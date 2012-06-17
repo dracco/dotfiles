@@ -1,6 +1,6 @@
 [user]
-    name = Gary Bernhardt
-    email = gary.bernhardt@gmail.com
+    name = Andy Pliszka
+    email = andy@isp44.com
 [diff]
 [color]
     ui = auto
@@ -43,6 +43,57 @@
     l = "!source ~/.githelpers && pretty_git_log"
     la = !git l --all
 
+  cp = cherry-pick
+  put = push origin HEAD
+  fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  ri = rebase --interactive
+  br = branch
+  pruneremote = remote prune origin
+  tree = log --graph --oneline --decorate --color --all
+  tr = log --graph --oneline --decorate --color
+  unpushed = !"PROJ_BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git log origin/$PROJ_BRANCH..HEAD"
+  unpulled = !"PROJ_BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git fetch && git log HEAD..origin/$PROJ_BRANCH"
+  ln = log --pretty=format:'%Cblue%h %Cred* %C(yellow)%s'
+[branch]
+  autosetuprebase = always
+[color]
+  ui = auto
+	diff = auto
+[core]
+  excludesfile = ~/.cvsignore
+  editor = vim
+  whitespace = warn
+[github]
+  user = dracco
+[help]
+  autocorrect = 10
+[interactive]
+  singlekey = true
 [merge]
-    tool = vimdiff
+  tool = vimdiff
+  summary = true
 
+[merge "bundlelock"]
+  name = lock Gemfile
+  driver = bundle install
+
+[merge "bundle"]
+  name = bundle
+  driver = bundle
+
+[merge "railsschema"]
+  name = newer Rails schema version
+  driver = "ruby -e '\n\
+    system %(git), %(merge-file), %(--marker-size=%L), %(%A), %(%O), %(%B)\n\
+    b = File.read(%(%A))\n\
+    b.sub!(/^<+ .*\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n=+\\nActiveRecord::Schema\\.define.:version => (\\d+). do\\n>+ .*/) do\n\
+      %(ActiveRecord::Schema.define(:version => #{[$1, $2].max}) do)\n\
+    end\n\
+    File.open(%(%A), %(w)) {|f| f.write(b)}\n\
+    exit 1 if b.include?(%(<)*%L)'"
+[push]
+  default = tracking
+
+[rebase]
+  autosquash = true

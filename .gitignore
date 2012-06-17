@@ -108,3 +108,4 @@
 *.orig
 *.rej
 *.pyc
+.vimlog

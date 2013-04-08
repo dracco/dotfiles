@@ -42,6 +42,9 @@
 /.localized
 /.macports
 /.mysql_history
+/.netrc
+/.npm
+/.offlineimap
 /.pip
 /.psql_history
 /.pypirc
@@ -55,6 +58,7 @@
 /.ssh
 /.ssl
 /.subversion
+/.toot
 /.tox
 /.vim-tmp
 /.vim/.netrwhist
@@ -73,6 +77,7 @@
 /Documents
 /Downloads
 /Dropbox
+/Gmail
 /Library/*
 !/Library/KeyBindings
 !/Library/AppleScripts
@@ -93,8 +98,9 @@
 /gmail-archive.sparsebundle
 /media
 /misc.sparsebundle
+/notes
+/papers
 /proj
-/purchases
 /reference
 /screencasts
 /share/man

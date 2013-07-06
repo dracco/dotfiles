@@ -59,11 +59,12 @@
   autosetuprebase = always
 [color]
   ui = auto
-	diff = auto
+  diff = auto
 [core]
   excludesfile = ~/.cvsignore
   editor = vim
   whitespace = warn
+  pager = less
 [github]
   user = dracco
 [help]
@@ -97,3 +98,6 @@
 
 [rebase]
   autosquash = true
+  
+[pager]
+  add = less

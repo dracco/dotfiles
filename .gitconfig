@@ -98,6 +98,6 @@
 
 [rebase]
   autosquash = true
-  
-[pager]
-  add = less
+
+[sequence]
+  editor = vim

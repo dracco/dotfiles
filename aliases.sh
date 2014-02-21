@@ -7,3 +7,5 @@ alias cuke="cucumber"
 alias z="zeus start"
 alias zspec="zeus rspec"
 alias zcuke="zeus cucumber"
+
+alias tmux="tmux -2"
